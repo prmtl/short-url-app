@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # local
     "server.core",
     "server.api",
+    "server.short_urls",
     # thirdparty
 ]
 
