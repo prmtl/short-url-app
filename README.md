@@ -17,6 +17,11 @@ It is also usefull to create superuser to access Django Admin Panel:
 	docker-compose run --rm backend /bin/bash -c 'python /app/manage.py createsuperuser'
 
 
+Tests can be run with:
+
+	docker-compose run --rm backend /app/docker/run-tests.sh
+
+
 ## URLs
 
 http://localhost:5000/graphql/ - GraphQL endpoint & GraphQL Playground
