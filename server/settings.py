@@ -30,9 +30,13 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
+# NOTE(prmtl): API & managment panel can be on different domain than URLs
+SHORT_URL_DOMAIN_NAME = config("SHORT_URL_DOMAIN_NAME", default="tier.app")
+SHORT_URL_SCHEME = config("SHORT_URL_SCHEME", default="http")
+
 DOMAIN_NAME = config("DOMAIN_NAME", default="localhost")
 ADDITIONAL_ALLOWED_HOSTS = config("ADDITIONAL_ALLOWED_HOSTS", cast=Csv())
-ALLOWED_HOSTS = [DOMAIN_NAME] + ADDITIONAL_ALLOWED_HOSTS
+ALLOWED_HOSTS = [DOMAIN_NAME, SHORT_URL_DOMAIN_NAME] + ADDITIONAL_ALLOWED_HOSTS
 
 # Application definition
 

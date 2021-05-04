@@ -1,8 +1,10 @@
 import string
 
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from furl import furl
 from hashid_field import HashidAutoField
 
 from server.core.models import TimeStampedModel
@@ -40,8 +42,12 @@ class ShortURL(TimeStampedModel):
 
     @property
     def hash(self):
-        return self.id
+        return str(self.id)
 
     @property
     def short(self):
-        return f"http://localhost/{self.hash}"
+        return furl(
+            scheme=settings.SHORT_URL_SCHEME,
+            host=settings.SHORT_URL_DOMAIN_NAME,
+            path=self.hash,
+        ).tostr()
