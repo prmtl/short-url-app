@@ -3,11 +3,9 @@ from graphene.test import Client
 from pytest_factoryboy import register
 
 from server.api.internal.schema import schema
+from server.tests.factories import ShortURLFactory
 
-# from server.tests.factories import (
-# )
-
-for factory in ():
+for factory in (ShortURLFactory,):
     register(factory)
 
 
