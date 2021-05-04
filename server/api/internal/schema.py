@@ -1,8 +1,7 @@
 import graphene
 
+from server.short_urls.schema import Mutation as ShortURLsMutation
 from server.short_urls.schema import Query as ShortURLsQuery
-
-# from server.short_urls.schema import Mutation as ShortURLsMutation
 
 
 class Query(
@@ -16,14 +15,11 @@ class Query(
         return "pong"
 
 
-# class Mutation(
-#     ShortURLsMutation,
-#     graphene.ObjectType,
-# ):
-#     pass
+class Mutation(
+    ShortURLsMutation,
+    graphene.ObjectType,
+):
+    pass
 
 
-schema = graphene.Schema(
-    query=Query,
-    # mutation=Mutation
-)
+schema = graphene.Schema(query=Query, mutation=Mutation)
