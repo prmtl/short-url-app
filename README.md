@@ -2,10 +2,30 @@
 
 This is the backend server application for X project.
 
-## Configuration
+The stack consists of Django with GraphQL API wrapped in Docker container. It uses "boilerplate" of my creation
+to speed up dev process and save time on things like project and dev env setup.
+
+## Running
+
+Project is wrapped in Docker container and this is how it is intended to run. A docker-compose
+file is added that allows to run whole stach (app + DB):
+
+	docker-compose up -d
+
+It is also usefull to create superuser to access Django Admin Panel:
+
+	docker-compose run --rm backend /bin/bash -c 'python /app/manage.py createsuperuser'
 
 
-### Commands
+## URLs
+
+http://localhost:5000/graphql/ - GraphQL endpoint & GraphQL Playground
+http://localhost:5000/backend/admin/ - Django Admin Panel
+
+
+## Commands
+
+Commands to run inside running container.
 
 Compile `requirements.txt` file (need to have `pip-tools` package installed locally):
 
