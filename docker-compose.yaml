@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  backend:
+    image: su-backend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    environment:
+      DEBUG: 1
+    env_file:
+      - test.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    depends_on:
+      - 'database'
+    command: /app/docker/run-dev.sh
+
+  database:
+    # NOTE: always use the highest version AWS RDS provides
+    image: postgres:12.4-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=shorturl
+    volumes:
+      - su-database:/var/lib/postgresql/data
+    ports:
+      - '6432:5432'
+
+volumes:
+  su-database:
