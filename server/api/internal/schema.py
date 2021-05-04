@@ -1,7 +1,12 @@
 import graphene
 
+from server.short_urls.schema import Query as ShortURLsQuery
+
+# from server.short_urls.schema import Mutation as ShortURLsMutation
+
 
 class Query(
+    ShortURLsQuery,
     graphene.ObjectType,
 ):
     ping = graphene.String()
@@ -12,6 +17,7 @@ class Query(
 
 
 # class Mutation(
+#     ShortURLsMutation,
 #     graphene.ObjectType,
 # ):
 #     pass
